@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;900&display=swap");
 *,
 *::before,
@@ -26,8 +25,7 @@ body {
 
 .heading {
   font-family: "Mulish", sans-serif;
-  margin-top: 3rem;
-  margin-bottom: 5rem;
+  margin: 3rem 0rem;
   text-align: center;
 }
 
@@ -37,9 +35,38 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: stretch;
-  margin: 2rem auto;
+  margin: 3rem auto;
 }
 
+.dashboard {
+  max-width: 450px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.dashboard__player {
+  font-family: "Mulish", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dashboard__player--winner {
+  text-transform: uppercase;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.dashboard__player--details {
+  display: flex;
+  border: 1px solid #ece8e1;
+  padding: 1rem 1.5rem;
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+.dashboard__player--details-mark, .dashboard__player--details-name, .dashboard__player--details-dash {
+  margin-right: 1rem;
+}
 .btn {
   border: 0.5px solid #ece8e1;
   background-color: transparent;

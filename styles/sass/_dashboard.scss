@@ -1,0 +1,38 @@
+.dashboard {
+  max-width: 450px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+
+  &__player {
+    font-family: 'Mulish', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &--winner {
+      text-transform: uppercase;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    &--details {
+      display: flex;
+      border: 1px solid $white;
+      padding: 1rem 1.5rem;
+      font-size: 1.7rem;
+      font-weight: 500;
+
+      &-mark,
+      &-name,
+      &-dash {
+        margin-right: 1rem;
+      }
+
+      &-score {
+      }
+    }
+  }
+}
