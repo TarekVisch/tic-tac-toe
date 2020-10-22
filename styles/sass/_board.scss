@@ -1,2 +1,27 @@
 .board {
+  max-width: 375px;
+  height: 375px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+
+  &__square {
+    font-family: 'Mulish', sans-serif;
+    font-size: 5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+
+    width: 33.333%;
+    height: 33.333%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid $white;
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(black, 0.3);
+    }
+  }
 }

@@ -30,7 +30,6 @@ body {
 }
 
 .controllers {
-  /* border: 1px solid red; */
   max-width: 320px;
   display: flex;
   justify-content: space-around;
@@ -41,6 +40,7 @@ body {
 .dashboard {
   max-width: 450px;
   margin: 0 auto;
+  margin-bottom: 3rem;
   display: flex;
   justify-content: space-between;
 }
@@ -67,6 +67,30 @@ body {
 .dashboard__player--details-mark, .dashboard__player--details-name, .dashboard__player--details-dash {
   margin-right: 1rem;
 }
+.board {
+  max-width: 375px;
+  height: 375px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+}
+.board__square {
+  font-family: "Mulish", sans-serif;
+  font-size: 5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  width: 33.333%;
+  height: 33.333%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #ece8e1;
+  cursor: pointer;
+}
+.board__square:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 .btn {
   border: 0.5px solid #ece8e1;
   background-color: transparent;
