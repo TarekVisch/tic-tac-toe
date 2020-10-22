@@ -1,0 +1,39 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: $white;
+  background-color: $bg-color;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heading {
+  font-family: 'Mulish', sans-serif;
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+  text-align: center;
+}
+
+.controllers {
+  /* border: 1px solid red; */
+  max-width: 320px;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  margin: 2rem auto;
+}

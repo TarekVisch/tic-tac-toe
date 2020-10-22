@@ -1,0 +1,68 @@
+.btn {
+  border: 0.5px solid $white;
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+
+  &:hover {
+    .btn__group::after {
+      left: -15%;
+    }
+
+    .btn__text {
+      color: $white;
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 0.8rem;
+    z-index: 2;
+    background-color: $bg-color;
+  }
+
+  &__group {
+    position: relative;
+    overflow: hidden;
+    padding: 1rem 2.2rem;
+    z-index: 3;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 150%;
+      height: 100%;
+      top: 0;
+      left: -170%;
+      transform: skewX(-30deg);
+      background-color: $red;
+      transition: left 0.5s ease-out;
+    }
+  }
+
+  &__text {
+    font-family: 'Mulish', sans-serif;
+    font-weight: 900;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 10;
+  }
+
+  &__alert {
+    color: $red;
+    border: 0.5px solid $red;
+  }
+
+  &__main {
+    color: $bg-color;
+    background-color: $white;
+  }
+}
