@@ -44,6 +44,13 @@ body {
   display: flex;
   justify-content: space-between;
 }
+.dashboard__tie {
+  font-family: "Mulish", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
 .dashboard__player {
   font-family: "Mulish", sans-serif;
   display: flex;
