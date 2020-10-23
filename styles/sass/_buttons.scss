@@ -6,6 +6,10 @@
   z-index: 1;
   cursor: pointer;
 
+  &:focus {
+    outline: none;
+  }
+
   &:hover {
     .btn__group::after {
       left: -15%;

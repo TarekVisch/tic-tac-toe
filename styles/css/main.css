@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;700;900&display=swap");
 *,
 *::before,
 *::after {
@@ -62,7 +62,21 @@ body {
   border: 1px solid #ece8e1;
   padding: 1rem 1.5rem;
   font-size: 1.7rem;
-  font-weight: 500;
+  font-weight: 700;
+  transition: all 0.2s ease-out;
+}
+.dashboard__player--details.turn {
+  background-color: #ece8e1;
+  color: #0f1923;
+  transform: translateY(-0.15rem);
+  box-shadow: 0 6px 5px rgba(0, 0, 0, 0.7);
+}
+.dashboard__player--details.winner {
+  background-color: #ff4655;
+  color: #ece8e1;
+  transform: translateY(-0.15rem);
+  box-shadow: 0 6px 5px rgba(0, 0, 0, 0.7);
+  border-color: #ff4655;
 }
 .dashboard__player--details-mark, .dashboard__player--details-name, .dashboard__player--details-dash {
   margin-right: 1rem;
@@ -98,6 +112,9 @@ body {
   position: relative;
   z-index: 1;
   cursor: pointer;
+}
+.btn:focus {
+  outline: none;
 }
 .btn:hover .btn__group::after {
   left: -15%;

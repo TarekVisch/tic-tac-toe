@@ -24,7 +24,23 @@
       border: 1px solid $white;
       padding: 1rem 1.5rem;
       font-size: 1.7rem;
-      font-weight: 500;
+      font-weight: 700;
+      transition: all 0.2s ease-out;
+
+      &.turn {
+        background-color: $white;
+        color: $bg-color;
+        transform: translateY(-0.15rem);
+        box-shadow: 0 6px 5px rgba(black, 0.7);
+      }
+
+      &.winner {
+        background-color: $red;
+        color: $white;
+        transform: translateY(-0.15rem);
+        box-shadow: 0 6px 5px rgba(black, 0.7);
+        border-color: $red;
+      }
 
       &-mark,
       &-name,
