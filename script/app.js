@@ -47,12 +47,37 @@ const BoardModule = (function () {
 })();
 
 const playerFactory = (mark, name, score) => {
+  // Dom Cache
+  const playerDOM = document.querySelector(`.player${mark}`);
+  const details = playerDOM.querySelector('.dashboard__player--details');
+  const winnerDOM = playerDOM.querySelector('.dashboard__player--winner');
+
+  // Getters and Setters
   const getMark = () => mark;
   const getName = () => name;
   const getScore = () => score;
   const setScore = (newScore) => (score = newScore);
 
-  return { getMark, getName, getScore, setScore };
+  const takeTurn = (isTurn = true) => {
+    if (isTurn) {
+      details.classList.add('turn');
+    } else {
+      details.classList.remove('turn');
+    }
+  };
+
+  const winner = (isWinner = true) => {
+    if (isWinner) {
+      details.classList.remove('turn');
+      details.classList.add('winner');
+      winnerDOM.style.opacity = 1;
+    } else {
+      details.classList.remove('winner');
+      winnerDOM.style.opacity = 0;
+    }
+  };
+
+  return { getMark, getName, getScore, setScore, takeTurn, winner };
 };
 
 const GameModule = (function () {
@@ -63,6 +88,7 @@ const GameModule = (function () {
 
   function _init() {
     BoardModule.render();
+    players[currentPlayer].takeTurn();
   }
 
   _init();
