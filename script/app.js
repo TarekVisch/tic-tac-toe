@@ -4,16 +4,30 @@ const BoardModule = (function (players) {
 
   // DOM Cache
   const boardDOM = document.querySelector('.board');
-  const squares = Array.from(document.querySelectorAll('.board__square'));
+  const _squares = Array.from(document.querySelectorAll('.board__square'));
 
   function render() {
     for (let i = 0; i < board.length; i++) {
-      squares[i].textContent = board[i];
+      _squares[i].textContent = board[i];
     }
+  }
+
+  function equalMarks(x, y, z) {
+    return x === y && y === z && x !== '';
   }
 
   function checkWinner() {
     let winner = null;
+
+    // Left to Right Diagonal
+    if (equalMarks(board[0], board[4], board[8])) {
+      winner = board[0];
+    }
+
+    // Right to Left Diagonal
+    if (equalMarks(board[2], board[4], board[6])) {
+      winner = board[2];
+    }
 
     return winner;
   }
@@ -71,6 +85,8 @@ const playerFactory = (mark, name, score) => {
 };
 
 const GameModule = (function () {
+  let stopGame = false;
+
   const player1 = playerFactory('x', 'Player 1', 0);
   const player2 = playerFactory('o', 'Player 2', 0);
   const players = [player1, player2];
@@ -96,6 +112,10 @@ const GameModule = (function () {
   _init();
 
   function _handleClick(e) {
+    if (stopGame) {
+      return;
+    }
+
     const { target } = e;
 
     if (!target.matches('.board__square')) {
@@ -110,10 +130,13 @@ const GameModule = (function () {
     const squareIndex = target.dataset.index;
     // update board
     board[squareIndex] = players[_current].getMark();
-
     render();
 
-    checkWinner();
+    if (checkWinner()) {
+      players[_current].winner();
+      stopGame = true;
+      return;
+    }
 
     _playerNext();
   }
@@ -125,9 +148,15 @@ const GameModule = (function () {
   }
 
   function nextRound() {
+    stopGame = false;
+
+    players[_current].winner(false);
+    _playerNext();
+
     for (let i = 0; i < board.length; i++) {
       board[i] = '';
     }
+
     render();
   }
 
