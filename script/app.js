@@ -29,6 +29,16 @@ const BoardModule = (function (players) {
       winner = board[2];
     }
 
+    // Verticals
+    if (equalMarks(board[0], board[1], board[2])) winner = board[0];
+    if (equalMarks(board[3], board[4], board[5])) winner = board[3];
+    if (equalMarks(board[6], board[7], board[8])) winner = board[6];
+
+    // Horizontal
+    if (equalMarks(board[0], board[3], board[6])) winner = board[0];
+    if (equalMarks(board[1], board[4], board[7])) winner = board[3];
+    if (equalMarks(board[2], board[5], board[8])) winner = board[6];
+
     return winner;
   }
 
@@ -59,6 +69,7 @@ const playerFactory = (mark, name, score) => {
 
   const winner = (isWinner = true) => {
     if (isWinner) {
+      setScore(getScore() + 1);
       detailsDOM.classList.remove('turn');
       detailsDOM.classList.add('winner');
       winnerDOM.style.opacity = 1;
@@ -128,14 +139,21 @@ const GameModule = (function () {
 
     // Get index of clicked square
     const squareIndex = target.dataset.index;
+
     // update board
     board[squareIndex] = players[_current].getMark();
     render();
 
+    const isBoardFull = board.every((mark) => mark != '');
+
+    // Check Winner
     if (checkWinner()) {
       players[_current].winner();
       stopGame = true;
       return;
+    } else if (checkWinner() == null && isBoardFull) {
+      players[_current].tieDOM.style.opacity = 1;
+      stopGame = true;
     }
 
     _playerNext();
@@ -150,7 +168,9 @@ const GameModule = (function () {
   function nextRound() {
     stopGame = false;
 
+    players[_current].displayScore();
     players[_current].winner(false);
+    players[_current].tieDOM.style.opacity = 0;
     _playerNext();
 
     for (let i = 0; i < board.length; i++) {
