@@ -25,6 +25,7 @@ const playerFactory = (mark, name, score) => {
   // Dom Cache
   const playerDOM = document.querySelector(`.player${mark}`);
   const detailsDOM = playerDOM.querySelector('.dashboard__player--details');
+  const scoreDOM = playerDOM.querySelector('.dashboard__player--details-score');
   const winnerDOM = playerDOM.querySelector('.dashboard__player--winner');
   const tieDOM = document.querySelector('.dashboard__tie');
 
@@ -53,7 +54,9 @@ const playerFactory = (mark, name, score) => {
     }
   };
 
-  const displayScore = () => {};
+  const displayScore = () => {
+    scoreDOM.textContent = getScore();
+  };
 
   return {
     getMark,
@@ -129,11 +132,11 @@ const GameModule = (function () {
   }
 
   function reset() {
-    for (let i = 0; i < players; i++) {
+    for (let i = 0; i < players.length; i++) {
       players[i].setScore(0);
       players[i].displayScore();
     }
-    playAgain();
+    nextRound();
   }
 
   return { reset };
