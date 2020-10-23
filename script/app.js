@@ -53,7 +53,18 @@ const playerFactory = (mark, name, score) => {
     }
   };
 
-  return { getMark, getName, getScore, setScore, takeTurn, winner, tieDOM };
+  const displayScore = () => {};
+
+  return {
+    getMark,
+    getName,
+    getScore,
+    setScore,
+    takeTurn,
+    winner,
+    tieDOM,
+    displayScore,
+  };
 };
 
 const GameModule = (function () {
@@ -61,11 +72,19 @@ const GameModule = (function () {
   const player2 = playerFactory('o', 'Player 2', 0);
   const players = [player1, player2];
 
-  let current = 0;
-  const { board, boardDOM, render, checkWinner } = BoardModule;
+  let _current = 0;
+
+  // DOM Cache
+  const { boardDOM } = BoardModule;
+  const resetButton = document.querySelector('.reset');
+  const nextRoundButton = document.querySelector('.next-round');
+
+  const { board, render, checkWinner } = BoardModule;
 
   // Events Handling
-  boardDOM.addEventListener('click', handleClick);
+  boardDOM.addEventListener('click', _handleClick);
+  resetButton.addEventListener('click', reset);
+  nextRoundButton.addEventListener('click', nextRound);
 
   function _init() {
     render();
@@ -73,7 +92,7 @@ const GameModule = (function () {
   }
   _init();
 
-  function handleClick(e) {
+  function _handleClick(e) {
     const { target } = e;
 
     if (!target.matches('.board__square')) {
@@ -87,18 +106,35 @@ const GameModule = (function () {
     // Get index of clicked square
     const squareIndex = target.dataset.index;
     // update board
-    board[squareIndex] = players[current].getMark();
+    board[squareIndex] = players[_current].getMark();
 
     render();
 
     checkWinner();
 
-    playerNext();
+    _playerNext();
   }
 
-  function playerNext() {
-    players[current].takeTurn(false);
-    current = current === 0 ? 1 : 0;
-    players[current].takeTurn();
+  function _playerNext() {
+    players[_current].takeTurn(false);
+    _current = _current === 0 ? 1 : 0;
+    players[_current].takeTurn();
   }
+
+  function nextRound() {
+    for (let i = 0; i < board.length; i++) {
+      board[i] = '';
+    }
+    render();
+  }
+
+  function reset() {
+    for (let i = 0; i < players; i++) {
+      players[i].setScore(0);
+      players[i].displayScore();
+    }
+    playAgain();
+  }
+
+  return { reset };
 })();
